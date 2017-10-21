@@ -7,22 +7,10 @@
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.js"></script>
 	<script>
 		$.ajax({
-		url: 'https://api.mixmax.com/v1/rules',
+		url: 'https://api.mixmax.com/v1/messages',
 		headers: {
 		'X-API-Token': 'a5c0e38e-5225-4a15-af23-a5974463e6db'
 		}
-		})
-		.done(function(data) {
-		console.log(data);
-		})
-	</script>
-	<script>
-		$.ajax({
-		url: 'https://api.mixmax.com/v1/rules',
-		headers: {
-		'X-API-Token': 'a5c0e38e-5225-4a15-af23-a5974463e6db'
-		}
-		method: {"POST"}
 		})
 		.done(function(data) {
 		console.log(data);
