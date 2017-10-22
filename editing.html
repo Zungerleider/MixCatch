@@ -1,0 +1,57 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Experimental 1</title>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.js"></script>
+	
+	<script>
+	var bigstring = "BIGSTRINGSTART- ";
+	function getfeed() {
+		return new Promise((resolve, reject) =>{
+			$.ajax({
+			url: 'https://api.mixmax.com/v1/livefeed',
+			headers: {
+			'X-API-Token': 'a5c0e38e-5225-4a15-af23-a5974463e6db'
+			}
+			}).done((res) => {
+				resolve(res.results);
+			});
+		});
+	}
+	function sendmail(contents) {
+		return new Promise((resolve, reject) =>{
+			$.ajax({
+			url: 'https://api.mixmax.com/v1/send',
+			method: "POST",
+			headers: {
+			'X-API-Token': 'a5c0e38e-5225-4a15-af23-a5974463e6db'
+			},
+			body: JSON.stringify({
+				message: {
+					"to": "zungerleier@gmail.com",
+					"from": "feedbackcatcher@mixmax.com",
+					"subject": "MixCatch Feedback Summary",
+					"html": "<p>" + contents + "</p>"
+				}
+			}).done((res) => {
+				resolve(res.results);
+			})
+		})
+	})
+	}
+	getfeed()
+	.then((result) => {
+		console.log(result[0].subject, result[1].subject, result[2].subject, result[3].subject, result[4].subject, result[5].subject);
+		return(result);
+	})
+	.then((result) => {
+		bigstring = bigstring + ' ' + result[0].subject + ' ' + result[1].subject + ' ' + result[2].subject + ' ' + result[3].subject + ' ' + result[4].subject + ' ' + result[5].subject;
+		console.log(bigstring);
+		return(result);
+	})
+	</script>
+</head>
+<body>
+</body>
+
+</html>
