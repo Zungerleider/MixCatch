@@ -6,6 +6,244 @@
 	
 	<script>
 	var bigstring = "BIGSTRINGSTART- ";
+	var bigstring2 = "";
+	function summarize(x){
+		
+		var userText = (x);
+		var userTextL = userText.toLowerCase();
+		var newUserText = "";
+		var newUserTextL = newUserText.toLowerCase();
+		var originalUserText = userText;
+		var y = 2;
+		
+		//Negative Words
+		var key1 = "bad";
+		var key2 = "horrible";
+		var key3 = "terrible";
+		//Positive Words
+		var key4 = "good";
+		var key5 = "love";
+		var key6 = "amazing";
+		//Issue Words
+		var key7 = "broken";
+		var key8 = "issue";
+		var key9 = "trouble";
+		
+		//Variables for the keywords() function.
+		var category = 0;
+		var keyFound1 = 0;
+		var keyFound2 = 0;
+		var keyFound3 = 0;
+		var keyFound4 = 0;
+		var keyFound5 = 0;
+		var keyFound6 = 0;
+		var keyFound7 = 0;
+		var keyFound8 = 0;
+		var keyFound9 = 0;
+		
+		bigstring2 = bigstring2 + "Subject: " +userText+ "<br/>";
+		bigstring2 = bigstring2 + "<br/>";
+		bigstring2 = bigstring2 + "Keywords found: "+"<br/>";
+			
+		/* 
+			Here, this function is reading the whole script to see if there are any similar words to the keywords that were
+			definied earlier. If they are, it will display key# and add 1 to keyFound# for the specific #. It will also assign
+			a number to category (1,2,3) depending on what type of keyword it is.
+		*/
+		function keywords(x){
+			if(x.indexOf(key1)>=0){
+				bigstring2 = bigstring2 + key1+"<br/>";
+				category = 1;
+				keyFound1 = keyFound1 + 1;
+			}
+			if(x.indexOf(key2)>=0){
+				bigstring2 = bigstring2 + key2+"<br/>";
+				category = 1;
+				keyFound2 = keyFound2 + 1;
+			}
+			if(x.indexOf(key3)>=0){
+				bigstring2 = bigstring2 + key3+"<br/>";
+				category = 1;
+				keyFound3 = keyFound3 + 1;
+			}
+			if(x.indexOf(key4)>=0){
+				bigstring2 = bigstring2 + key4+"<br/>";
+				category = 2;
+				keyFound4 = keyFound4 + 1;
+			}
+			if(x.indexOf(key5)>=0){
+				bigstring2 = bigstring2 + key5+"<br/>";
+				category = 2;
+				keyFound5 = keyFound5 + 1;
+			}
+			if(x.indexOf(key6)>=0){
+				bigstring2 = bigstring2 + key6+"<br/>";
+				category = 2;
+				keyFound6 = keyFound6 + 1;
+			}
+			if(x.indexOf(key7)>=0){
+				bigstring2 = bigstring2 + key4+"<br/>";
+				category = 3;
+				keyFound7 = keyFound7 + 1;
+			}
+			if(x.indexOf(key8)>=0){
+				bigstring2 = bigstring2 + key7+"<br/>";
+				category = 3;
+				keyFound8 = keyFound8 + 1;
+			}
+			if(x.indexOf(key9)>=0){
+				bigstring2 = bigstring2 + key9+"<br/>";
+				category = 3;
+				keyFound9 = keyFound9 + 1;
+			}
+		}
+		
+		/* 
+			This function is exactly similar to the previous function, with the only exception being that it does not assign a 
+			number to category and does not print out the name of the variable assigned with key# and keyFound#.
+		*/
+		function updateKeywords(x){
+			if(x.indexOf(key1)>=0){
+				keyFound1 = keyFound1 + 1;
+			}
+			if(x.indexOf(key2)>=0){
+				keyFound2 = keyFound2 + 1;
+			}
+			if(x.indexOf(key3)>=0){
+				keyFound3 = keyFound3 + 1;
+			}
+			if(x.indexOf(key4)>=0){
+				keyFound4 = keyFound4 + 1;
+			}
+			if(x.indexOf(key5)>=0){
+				keyFound5 = keyFound5 + 1;
+			}
+			if(x.indexOf(key6)>=0){
+				keyFound6 = keyFound6 + 1;
+			}
+			if(x.indexOf(key7)>=0){
+				keyFound7 = keyFound7 + 1;
+			}
+			if(x.indexOf(key8)>=0){
+				keyFound8 = keyFound8 + 1;
+			}
+			if(x.indexOf(key9)>=0){
+				keyFound9 = keyFound9 + 1;
+			}
+		}
+		
+		
+		//This function call will run userTextL through the function keywords(). updateKeywords() will be used later.
+		keywords(userTextL);
+		
+		bigstring2 = bigstring2 + "<br/>";
+		bigstring2 = bigstring2 + "Possible Categories:<br/>";
+		
+		/*
+		Whatever number category got assigned earlier, this is where its output will be determined. The output will be
+		seen right underneath of "Possible Categories:" allowing the user to quickly summarize what the contents of the
+		email will be.
+		*/
+		if(category==1){
+			bigstring2 = bigstring2 + "Negative<br/>";
+		}else{
+		}
+		
+		if(category==2){
+			bigstring2 = bigstring2 + "Positive<br/>";
+		}else{
+		}
+		
+		if(category==3){
+			bigstring2 = bigstring2 + "Issue<br/>";
+		}else{
+		}
+		
+		/*
+		Here, this function will update the script and delete the first set of the keywords that were in the script.
+		the keywords() function only looks for the first of the 9 possible keywords in this document, so in order to
+		list the total amount of certain keywords that appear, we must delete the first keywords that appear.
+		*/
+		function updateScript(y){
+			if(keyFound1==y){
+				var str = userText;
+				var newUserText = str.replace("bad","");
+				userText = newUserText;
+			}
+			if(keyFound2==y){
+				var str = userText;
+				var newUserText = str.replace("horrible","");
+				userText = newUserText;
+			}
+			if(keyFound3==y){
+				var str = userText;
+				var newUserText = str.replace("terrible","");
+				userText = newUserText;
+			}
+			if(keyFound4==y){
+				var str = userText;
+				var newUserText = str.replace("good","");
+				userText = newUserText;
+			}
+			if(keyFound5==y){
+				var str = userText;
+				var newUserText = str.replace("love","");
+				userText = newUserText;
+			}
+			if(keyFound6==y){
+				var str = userText;
+				var newUserText = str.replace("amazing","");
+				userText = newUserText;
+			}
+			if(keyFound7==y){
+				var str = userText;
+				var newUserText = str.replace("broken","");
+				userText = newUserText;
+			}
+			if(keyFound8==y){
+				var str = userText;
+				var newUserText = str.replace("issue","");
+				userText = newUserText;
+			}
+			if(keyFound9==y){
+				var str = userText;
+				var newUserText = str.replace("trouble","");
+				userText = newUserText;
+			}
+		}
+		
+		bigstring2 = bigstring2 + "<br/>";
+		
+		/*
+		This loop will continuously run the updateScript() and updateKeywords() functions until the users text no longer
+		contains any of the keywords. Once the loop is finally exited, all of the 9 keywords will have a value assigned to
+		their keyFound# and that number will be displayed next to its respective word.
+		*/
+		for (var i = 1; i < 100; i++){
+			updateScript(i);
+				if(userText==originalUserText){
+					break;
+				}else{
+					updateKeywords(userText);
+				}
+			}
+		
+		/*
+		Here, we display all 9 values of keyFound# next to their respective words. This will show us how many times the word
+		appears within the user's text string.
+		*/
+		bigstring2 = bigstring2 + "Amount of each keyword found in Script: <br/>";
+		bigstring2 = bigstring2 + "Bad: "+keyFound1+"<br/>";
+		bigstring2 = bigstring2 + "horrible: "+keyFound2+"<br/>";
+		bigstring2 = bigstring2 + "terrible: "+keyFound3+"<br/>";
+		bigstring2 = bigstring2 + "good: "+keyFound4+"<br/>";
+		bigstring2 = bigstring2 + "love: "+keyFound5+"<br/>";
+		bigstring2 = bigstring2 + "amazing: "+keyFound6+"<br/>";
+		bigstring2 = bigstring2 + "broken: "+keyFound7+"<br/>";
+		bigstring2 = bigstring2 + "issue: "+keyFound8+"<br/>";
+		bigstring2 = bigstring2 + "trouble: "+keyFound9+"<br/>";
+	}
+	
 	function getfeed() {
 		return new Promise((resolve, reject) =>{
 			$.ajax({
@@ -27,27 +265,30 @@
 			'X-API-Token': 'a5c0e38e-5225-4a15-af23-a5974463e6db'
 			},
 			body: JSON.stringify({
-				message: {
-					"to": "zungerleier@gmail.com",
-					"from": "feedbackcatcher@mixmax.com",
+				"message": {
+					"to": "zungerleider@gmail.com",
+					"from": "zungerleider@gmail.com",
 					"subject": "MixCatch Feedback Summary",
-					"html": "<p>" + contents + "</p>"
+					"html": "swag"
 				}
+			})
 			}).done((res) => {
 				resolve(res.results);
-			})
 		})
 	})
 	}
 	getfeed()
 	.then((result) => {
-		console.log(result[0].subject, result[1].subject, result[2].subject, result[3].subject, result[4].subject, result[5].subject);
-		return(result);
+		bigstring = bigstring + ' ' + result[0].subject + ' ' + result[1].subject + ' ' + result[2].subject + ' ' + result[3].subject + ' ' + result[4].subject + ' ' + result[5].subject;
+		return(bigstring);
 	})
 	.then((result) => {
-		bigstring = bigstring + ' ' + result[0].subject + ' ' + result[1].subject + ' ' + result[2].subject + ' ' + result[3].subject + ' ' + result[4].subject + ' ' + result[5].subject;
-		console.log(bigstring);
-		return(result);
+		bigstring = summarize(result)
+		//sendmail(bigstring);
+		return(summarize(result));
+	})
+	.then((result) => {
+		console.log(result);
 	})
 	</script>
 </head>
